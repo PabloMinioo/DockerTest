@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora</title>
+</head>
+<body>
+  <h1>CALCULADORA</h1>
+  
+  <form id="calculator" style="margin: 0 auto;">
+  	<label for="num1">Ingrese el primer valor:</label>
+    <input type="number" id="num1" placeholder="Número 1">
+    <br>
+    
+    <label for="num1">Elija la operación:</label>
+    <select id="operator">
+      <option value="add">Suma (+)</option>
+      <option value="subtract">Resta (-)</option>
+      <option value="multiply">Multiplicar(*)</option>
+      <option value="divide">Dividir (/)</option>
+    </select>
+    <br>
+    
+    <label for="num1">Ingrese el segundo valor:</label>
+    <input type="number" id="num2" placeholder="Número 2">
+	
+    <br>
+    <input type="button" value="Calcular" onclick="calculate()">
+    
+    <p>Resultado: <span id="result"></span></p>
+  </form>
+
+  <script>
+    function calculate() {
+      const num1 = parseFloat(document.getElementById('num1').value);
+      const num2 = parseFloat(document.getElementById('num2').value);
+      const operator = document.getElementById('operator').value;
+
+      let result = 0;
+
+      switch (operator) {
+        case 'add':
+          result = num1 + num2;
+          break;
+        case 'subtract':
+          result = num1 - num2;
+          break;
+        case 'multiply':
+          result = num1 * num2;
+          break;
+        case 'divide':
+          if (num2 !== 0) {
+            result = num1 / num2;
+          } else {
+            result = 'Error: División por cero';
+          }
+          break;
+      }
+
+      document.getElementById('result').textContent = result;
+    }
+  </script>
+  
+  <style>
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0d4b4;
+  }
+
+  h1 {
+  	font-family: Calisto MT;
+    font-size: 60px;
+  	color: #333;
+  	text-align: center;
+  	margin-top: 50px; 
+  }
+
+  form {
+    background-color: #fff;
+    padding: 20px;
+    width: 40%;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+
+  input[type="number"], select {
+    width: 25%;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 15px;
+  }
+
+  input[type="button"] {
+    width: 35%;
+    background-color: #0074d9;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+
+  input[type="button"]:hover {
+    background-color: #0056b3;
+  }
+
+  p {
+    font-family: Calisto MT;
+    font-size: 20px;
+  	color: #333;
+  	text-align: center;
+    margin-top: 50px;
+  }
+
+  span {
+    color: #2497da;
+  }
+</style>
+
+</body>
+</html>

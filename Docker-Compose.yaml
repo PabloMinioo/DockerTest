@@ -1,0 +1,28 @@
+services:
+  dokploy-postgres:
+    image: postgres:15
+    container_name: dokploy-postgres
+    environment:
+      POSTGRES_USER: dokploy
+      POSTGRES_PASSWORD: superpassword
+      POSTGRES_DB: dokploy
+    volumes:
+      - dokploy_pg_data:/var/lib/postgresql/data
+    restart: always
+
+  dokploy:
+    image: dokploy/dokploy:latest
+    container_name: dokploy
+    depends_on:
+      - dokploy-postgres
+    environment:
+      DATABASE_URL: postgres://dokploy:superpassword@dokploy-postgres:5432/dokploy
+    ports:
+      - "3000:3000"
+    volumes:
+      - dokploy_data:/data
+    restart: always
+
+volumes:
+  dokploy_pg_data:
+  dokploy_data:
